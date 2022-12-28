@@ -42,15 +42,15 @@ kops create cluster \
   --name ${HYDRO_CLUSTER_NAME}  > /dev/null 2>&1
 
 # delete default instance group that we won't use
-kops delete ig nodes --name ${HYDRO_CLUSTER_NAME} --yes > /dev/null 2>&1
+kops delete ig nodes --name ${HYDRO_CLUSTER_NAME} --yes > ${HYDRO_HOME}/log 2>&1
 
 echo "Adding general instance group"
 sed "s|CLUSTER_NAME|$HYDRO_CLUSTER_NAME|g" yaml/igs/general-ig.yml > tmp.yml
-kops create -f tmp.yml > /dev/null 2>&1
+kops create -f tmp.yml >> ${HYDRO_HOME}/log 2>&1
 rm tmp.yml
 
 # create the cluster with just the routing instance group
 echo "Creating cluster on AWS..."
-kops update cluster --name ${HYDRO_CLUSTER_NAME} --yes > /dev/null 2>&1
+kops update cluster --name ${HYDRO_CLUSTER_NAME} --yes >> ${HYDRO_HOME}/log 2>&1
 
 ./validate_cluster.sh

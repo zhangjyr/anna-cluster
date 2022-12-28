@@ -27,7 +27,7 @@ sed "s|CLUSTER_NAME|$HYDRO_CLUSTER_NAME|g" $YML_FILE > tmp.yml
 sed -i "s|MAX_DUMMY|$2|g" tmp.yml
 sed -i "s|MIN_DUMMY|$2|g" tmp.yml
 
-kops replace -f tmp.yml --force > /dev/null 2>&1
+kops replace -f tmp.yml --force >> ${HYDRO_HOME}/log 2>&1
 rm tmp.yml
 
-kops update cluster --name ${HYDRO_CLUSTER_NAME} --yes > /dev/null 2>&1
+kops update cluster --name ${HYDRO_CLUSTER_NAME} --yes >> ${HYDRO_HOME}/log 2>&1

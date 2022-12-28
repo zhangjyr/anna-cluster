@@ -19,7 +19,7 @@ metadata:
     kops.k8s.io/cluster: CLUSTER_NAME
   name: gpu-instances
 spec:
-  image: kope.io/k8s-1.15-debian-stretch-amd64-hvm-ebs-2020-01-17
+  image: 136693071363/debian-11-amd64-20221219-1234
   hooks:
   - execContainer:
       image: hydroproject/nvidia-device-plugin:0.2.0-cuda10.0

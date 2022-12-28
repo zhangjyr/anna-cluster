@@ -124,9 +124,10 @@ def create_cluster(mem_count, ebs_count, func_count, gpu_count, sched_count,
                     BATCH_SIZE, prefix)
     util.get_pod_ips(client, 'role=scheduler')
 
-    print('Adding %d function, %d GPU nodes...' % (func_count, gpu_count))
-    batch_add_nodes(client, apps_client, cfile, ['function', 'gpu'],
-                    [func_count, gpu_count], BATCH_SIZE, prefix)
+    # Disable GPU for now.
+    # print('Adding %d function, %d GPU nodes...' % (func_count, gpu_count))
+    # batch_add_nodes(client, apps_client, cfile, ['function', 'gpu'],
+    #                 [func_count, gpu_count], BATCH_SIZE, prefix)
 
     print('Creating function service...')
     service_spec = util.load_yaml('yaml/services/function.yml', prefix)
